@@ -1,5 +1,7 @@
 ﻿<?php
 session_start();
+
+
 if(isset($_SESSION['userid']) && $_SESSION['level'] == 2)
 {
  if(isset($_POST['adduser']))
@@ -32,7 +34,7 @@ $u = $p ="";
   if($u & $p & $l)
   {
    $conn=mysql_connect("localhost","root","") or die("can't connect this database");
-   mysql_select_db("project",$conn);
+   mysql_select_db("nguoidung",$conn);
    $sql="select * from user where username='".$u."'";
    $query=mysql_query($sql);
    if(mysql_num_rows($query) != "" )
@@ -59,3 +61,11 @@ Password: <input type='password' name='password' size='25' /> <br />
 Re-Password: <input type='password' name='re-password' size='25' /><br />
 <input type='submit' name='adduser' value='Add New User' />
 </form>
+<?php
+}
+else
+{
+ header("location: login.php");
+ exit();
+}
+?>
